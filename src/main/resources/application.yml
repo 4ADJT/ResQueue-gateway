@@ -1,0 +1,26 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: gateway
+
+  cloud:
+    gateway:
+      routes:
+        - id: resqueue_clinic
+          uri: lb://RESQUEUE-CLINIC
+          predicates:
+            - Path=/hello/**
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:9000/realms/resqueue
+
+eureka:
+  client:
+    fetch-registry: true
+    service-url:
+      defaultZone: http://185.137.92.205:8761/eureka/
