@@ -22,7 +22,7 @@ spring:
 eureka:
   client:
     fetch-registry: true
-    register-with-eureka: false
+    register-with-eureka: true
     service-url:
       defaultZone: https://eureka.imaginer.com.br/eureka/
 
