@@ -21,10 +21,11 @@ public class SecurityConfiguration {
         .csrf(ServerHttpSecurity.CsrfSpec::disable)
 
         .authorizeExchange(exchanges -> exchanges
-            .pathMatchers("/eureka/**").permitAll()
-            .pathMatchers("/login/**").permitAll()
+            .pathMatchers("/eureka*/**").permitAll()
+            .pathMatchers("/actuator*/**").permitAll()
+            .pathMatchers("/login").permitAll()
             .pathMatchers("/create/user/**").permitAll()
-            .pathMatchers("/logout/**").permitAll()
+            .pathMatchers("/logout*/**").permitAll()
             .anyExchange().authenticated()
         ).oauth2ResourceServer(oauth2 -> oauth2
             .jwt(withDefaults())

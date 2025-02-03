@@ -17,10 +17,10 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:9000/realms/resqueue
+          issuer-uri: https://auth.imaginer.com.br/realms/resqueue
 
 eureka:
   client:
     fetch-registry: true
     service-url:
-      defaultZone: http://185.137.92.205:8761/eureka/
+      defaultZone: https://eureka.imaginer.com.br/eureka/
