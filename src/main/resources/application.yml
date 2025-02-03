@@ -12,12 +12,24 @@ spring:
           uri: lb://RESQUEUE-CLINIC
           predicates:
             - Path=/hello/**
+          filters:
+            - TokenRelay=
 
   security:
     oauth2:
       resourceserver:
         jwt:
           issuer-uri: https://auth.imaginer.com.br/realms/resqueue
+
+      client:
+        registration:
+          keycloak:
+            client-id: gateway-client
+            client-secret: duusoyVFWtZj5PFMM16r7IYryll3DuLQ
+            scope: openid, profile, email
+        provider:
+          keycloak:
+            issuer-uri: https://auth.imaginer.com.br/realms/resqueue
 
 eureka:
   client:
@@ -30,7 +42,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: health,info
+        include: health
   endpoint:
     health:
       show-details: always
