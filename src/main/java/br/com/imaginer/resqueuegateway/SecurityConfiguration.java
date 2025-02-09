@@ -7,6 +7,8 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.web.server.SecurityWebFilterChain;
+import org.springframework.security.web.util.matcher.RegexRequestMatcher;
+import org.springframework.security.web.util.matcher.RequestMatcher;
 
 @Configuration
 @EnableWebFluxSecurity
@@ -15,18 +17,18 @@ public class SecurityConfiguration {
 
   @Bean
   public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
+
     http
 
         .csrf(ServerHttpSecurity.CsrfSpec::disable)
 
         .authorizeExchange(exchanges -> exchanges
-            .pathMatchers("/**/eureka/**").permitAll()
-            .pathMatchers("/**/actuator/**").permitAll()
-            .pathMatchers("/**/login").permitAll()
-            .pathMatchers("/**/create/admin").permitAll()
-            .pathMatchers("/**/create/group", "/**/create/user", "/**/list/user")
-              .hasAuthority("ADMIN")
-            .pathMatchers("/**/logout").permitAll()
+            .pathMatchers("/eureka/**").permitAll()
+            .pathMatchers("/actuator/**").permitAll()
+            .pathMatchers("/login").permitAll()
+            .pathMatchers("/create/admin").permitAll()
+            .pathMatchers("/create/group", "/create/user", "/list/user").hasAuthority("ADMIN")
+            .pathMatchers("/logout").permitAll()
             .anyExchange().authenticated()
 
         ).oauth2ResourceServer(oauth2 -> oauth2
