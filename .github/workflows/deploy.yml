@@ -31,4 +31,6 @@ jobs:
             docker run -d --network host --name gateway \
               -e SPRING_PROFILES_ACTIVE=prod \
               -e eureka.environment=prod \
+              -e KC_BASE_ISSUER_URL=${{ secrets.KC_BASE_ISSUER_URL }} \
+              -e EUREKA_URL=${{ secrets.EUREKA_URL }} \
               ${{ secrets.DOCKERHUB_REPOSITORY }}:latest
