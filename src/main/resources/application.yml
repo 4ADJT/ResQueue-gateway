@@ -17,7 +17,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: ${KC_BASE_ISSUER_URL:http://localhost:9000}/realms/resqueue}
+          issuer-uri: ${KC_BASE_ISSUER_URL:http://localhost:9000}/realms/resqueue
 
 eureka:
   client:
