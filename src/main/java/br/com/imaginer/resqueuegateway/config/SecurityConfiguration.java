@@ -31,10 +31,6 @@ public class SecurityConfiguration {
         .authorizeExchange(exchanges -> exchanges
             .pathMatchers("/eureka/**").permitAll()
             .pathMatchers("/actuator/**").permitAll()
-            .pathMatchers("/login").permitAll()
-            .pathMatchers("/create/admin").permitAll()
-            .pathMatchers("/create/group", "/create/user", "/list/user").hasAuthority("ADMIN")
-            .pathMatchers("/logout").permitAll()
             .anyExchange().authenticated()
 
         ).oauth2ResourceServer(oauth2 -> oauth2
