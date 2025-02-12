@@ -31,7 +31,11 @@ public class SecurityConfiguration {
         .authorizeExchange(exchanges -> exchanges
             .pathMatchers("/eureka/**").permitAll()
             .pathMatchers("/actuator/**").permitAll()
-            .anyExchange().authenticated()
+            .pathMatchers("/users/**").permitAll()
+            .pathMatchers("/auth/**").permitAll()
+            .pathMatchers("/clinic/**").permitAll()
+            .pathMatchers("/vaccine/**").permitAll()
+            .anyExchange().permitAll()
 
         ).oauth2ResourceServer(oauth2 -> oauth2
             .jwt(Customizer.withDefaults())

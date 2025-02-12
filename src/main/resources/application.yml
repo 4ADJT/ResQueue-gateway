@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8082
 
 spring:
   application:
@@ -7,11 +7,24 @@ spring:
 
   cloud:
     gateway:
+      discovery:
+        locator:
+          enabled: true
       routes:
+        - id: resqueue_user
+          uri: lb://RESQUEUE-USER
+          predicates:
+            - Path=/auth/**, /users/**
+
         - id: resqueue_clinic
           uri: lb://RESQUEUE-CLINIC
           predicates:
-            - Path=/hello/**
+            - Path=/clinic/**
+
+        - id: resqueue_vaccine
+          uri: lb://RESQUEUE-VACCINE
+          predicates:
+            - Path=/vaccine/**
 
   security:
     oauth2:
