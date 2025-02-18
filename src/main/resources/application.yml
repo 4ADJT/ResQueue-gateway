@@ -39,6 +39,22 @@ eureka:
     service-url:
       defaultZone: ${EUREKA_URL:http://localhost:8761/eureka/}
 
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    enabled: true
+    path: /docs
+    config-url: /v3/api-docs/swagger-config
+    urls:
+      - name: users-service
+        url: /users/v3/api-docs
+      - name: clinic-service
+        url: /clinic/v3/api-docs
+      - name: vaccine-service
+        url: /vaccine/v3/api-docs
+
 management:
   endpoints:
     web:

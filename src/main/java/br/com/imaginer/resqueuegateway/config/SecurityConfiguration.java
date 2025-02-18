@@ -35,6 +35,7 @@ public class SecurityConfiguration {
             .pathMatchers("/auth/**").permitAll()
             .pathMatchers("/clinic/**").permitAll()
             .pathMatchers("/vaccine/**").permitAll()
+
             .anyExchange().permitAll()
 
         ).oauth2ResourceServer(oauth2 -> oauth2
