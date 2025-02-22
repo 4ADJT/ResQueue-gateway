@@ -100,13 +100,13 @@ management:
 ## 🔥 **Rotas Configuradas**
 Este gateway expõe e roteia as requisições para os seguintes serviços:
 
-| Serviço         | Método | Endpoint       | Destino |
-|----------------|--------|---------------|---------|
-| **Autenticação** | `POST` | `/auth/**` | `lb://resqueue-user` |
-| **Usuários** | `GET` | `/users/**` | `lb://resqueue-user` |
-| **Clínicas** | `GET` | `/clinic/**` | `lb://resqueue-clinic` |
-| **Vacinas** | `GET` | `/vaccine/**` | `lb://resqueue-vaccine` |
-| **Swagger UI** | `GET` | `/docs` | Documentação via SpringDoc |
+| Serviço         | Endpoint       | Destino |
+|----------------|---------------|---------|
+| **Autenticação** | `/auth/**` | `lb://resqueue-user` |
+| **Usuários** | `/users/**` | `lb://resqueue-user` |
+| **Clínicas** | `/clinic/**` | `lb://resqueue-clinic` |
+| **Vacinas** | `/vaccine/**` | `lb://resqueue-vaccine` |
+| **Swagger UI** | `/docs` | Documentação via SpringDoc |
 
 ---
 
@@ -116,18 +116,9 @@ Uma imagem Docker já está disponível no **Docker Hub**:
 
 ```sh
 docker pull rodrigobrocchi/resqueue-gateway:latest
-docker run -p 8080:8080 rodrigobrocchi/resqueue-gateway:latest
+docker run -p 8080:8080 \
+  -e KC_BASE_ISSUER_URL=http://localhost:9000 \
+  -e EUREKA_URL=http://localhost:8761/eureka \
+  rodrigobrocchi/resqueue-gateway:latest
 ```
-
-Se quiser construir sua própria imagem Docker:
-```dockerfile
-FROM eclipse-temurin:21-jdk
-WORKDIR /app
-COPY target/resqueue-gateway.jar app.jar
-ENTRYPOINT ["java", "-jar", "app.jar"]
-```
-E execute:
-```sh
-docker build -t resqueue-gateway .
-docker run -p 8080:8080 resqueue-gateway
-```
+---
