@@ -102,10 +102,10 @@ Este gateway expõe e roteia as requisições para os seguintes serviços:
 
 | Serviço         | Endpoint       | Destino |
 |----------------|---------------|---------|
-| **Autenticação** | `/auth/**` | `lb://resqueue-user` |
-| **Usuários** | `/users/**` | `lb://resqueue-user` |
-| **Clínicas** | `/clinic/**` | `lb://resqueue-clinic` |
-| **Vacinas** | `/vaccine/**` | `lb://resqueue-vaccine` |
+| **Autenticação** | `/auth/**` | `lb://RESQUEUE-USER` |
+| **Usuários** | `/users/**` | `lb://RESQUEUE-USER` |
+| **Clínicas** | `/clinic/**` | `lb://RESQUEUE-CLINIC` |
+| **Vacinas** | `/vaccine/**` | `lb://RESQUEUE-VACCINE` |
 | **Swagger UI** | `/docs` | Documentação via SpringDoc |
 
 ---
